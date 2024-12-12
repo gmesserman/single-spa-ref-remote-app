@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/named-exports.min.js"></script>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "react": "https://cdn.jsdelivr.net/npm/react@17/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.production.min.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="single-spa-application:test-remote-app"></div>
+  <script>
+    System.import('http://localhost:4173/main.js')
+      .then((module) => {
+        console.log('remoteEntry loaded');
+        console.log('Available modules:', Object.keys(System.entries()));
+        console.log('Loaded module', module);
+      })
+      .catch(console.error);
+  </script>
+</body>
+</html>
